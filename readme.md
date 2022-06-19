@@ -7,6 +7,8 @@ The nginx route manager provides a simple way to create dynamic routing using a 
 This container image is available [here](https://hub.docker.com/r/spherexdev/nginx-route-manager).
 Code to create this container is located on [github](https://github.com/spherex-dev/nginx-route-manager).
 
+If you are interested in learning about the use case for dynamic routing, an article about is available on our [development blog](https://www.spherex.dev/a-dynamic-route-manager-for-nginx/).
+
 ## How to run this container
 
 This container can be started using the following command: 
@@ -67,3 +69,4 @@ server {
         rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json last;
     }
 }
+```
