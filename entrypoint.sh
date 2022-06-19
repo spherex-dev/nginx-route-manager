@@ -1,2 +1,2 @@
 #!/bin/sh
-python3 /route-manager/route_manager.py
+python3 /nginx-route-manager/route_manager.py

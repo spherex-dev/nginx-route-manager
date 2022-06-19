@@ -18,17 +18,16 @@ server = [
 ]
 
 routes = {
-    "/r/server1": {
-        "proxy_pass": "http://localhost:8000/"
-    },
-    "/r/server2": {
-        "proxy_pass": "http://localhost:8001/"
-    },
-    "/r/server3": {
-        "proxy_pass": "http://localhost:8003/",
-        "ssl_certificate": "/etc/letsencrypt/live/www.test.com/fullchain.pem"
-
-    }
+    "/r/server1": [
+        ("proxy_pass", "http://localhost:8000/"),
+    ],
+    "/r/server2": [
+        ("proxy_pass", "http://localhost:8001/"),
+    ],
+    "/r/server3": [
+        ("proxy_pass", "http://localhost:8003/"),
+        ("rewrite", "^/.well-known/host-meta.json /public.php?service=host-meta-json last")
+    ]
 }
 
 

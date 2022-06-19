@@ -19,17 +19,16 @@ server = [
 ]
 
 routes = {
-    "/r/server1": {
-        "proxy_pass": "http://localhost:8000/"
-    },
-    "/r/server2": {
-        "proxy_pass": "http://localhost:8001/"
-    },
-    "/r/server3": {
-        "proxy_pass": "http://localhost:8003/",
-        "ssl_certificate": "/etc/letsencrypt/live/cloud.paladiamors.com/fullchain.pem"
-
-    }
+    "/r/server1": [
+        ("proxy_pass", "http://localhost:8000/"),
+    ],
+    "/r/server2": [
+        ("proxy_pass", "http://localhost:8001/"),
+    ],
+    "/r/server3": [
+        ("proxy_pass", "http://localhost:8003/"),
+        ("rewrite", "^/.well-known/host-meta.json /public.php?service=host-meta-json last")
+    ]
 }
 
 
@@ -54,11 +53,11 @@ def _render_param(param):
         return " ".join(param)
 
 
-def render_route(route: str, config: dict):
+def render_route(route: str, config: list):
     template = """  location %s {
 %s
     }"""
-    settings = "\n".join(["    " * 2 + f"{k} {_render_param(v)};" for k, v in config.items()])
+    settings = "\n".join(["    " * 2 + f"{k} {_render_param(v)};" for k, v in config])
     return template % (route, settings)
 
 
