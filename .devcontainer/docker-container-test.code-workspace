@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": ".."
+    },
+    {
+      "path": "../../../etc/nginx"
+    }
+  ],
+  "settings": {
+    "terminal.integrated.env.osx": { "PYTHONPATH": "${workspaceFolder}" },
+    "terminal.integrated.env.linux": { "PYTHONPATH": "${workspaceFolder}" }
+  }
+}
